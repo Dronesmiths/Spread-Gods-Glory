@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import ProfileTemplate from './pages/ProfileTemplate';
+import FloatingVoiceWidget from './components/FloatingVoiceWidget';
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
           </div>
         </div>
       </footer>
+      
+      {/* Global AI Floating Widget */}
+      <FloatingVoiceWidget />
     </div>
   );
 }

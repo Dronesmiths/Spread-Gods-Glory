@@ -1,7 +1,6 @@
 import Hero from '../components/Hero';
 import WoodCard from '../components/WoodCard';
 import ChurchFinder from '../components/ChurchFinder';
-import VoicePrayer from '../components/VoicePrayer';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -56,10 +55,6 @@ export default function Home() {
           <div className="pattern-content enterprise-container">
             <div style={{ maxWidth: '800px', margin: '0 auto', marginBottom: 'var(--spacing-xl)' }}>
               <ChurchFinder />
-            </div>
-
-            <div id="pray" style={{ marginTop: 'var(--spacing-xl)' }}>
-              <VoicePrayer />
             </div>
           </div>
         </section>

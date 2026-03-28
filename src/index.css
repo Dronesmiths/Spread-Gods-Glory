@@ -1,0 +1,149 @@
+:root {
+  --color-creme: #FDFBF7;
+  --color-creme-dark: #EFE9D9;
+  --color-brown-light: #5C4A3D;
+  --color-brown: #4A3B32;
+  --color-wood-dark: #2C1E16;
+  --color-blood: #8B1A1A;
+  --color-blood-dark: #590000;
+  
+  --font-heading: 'Cinzel', 'Playfair Display', Georgia, serif; 
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-xxl: 8rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-creme);
+  color: var(--color-wood-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-brown);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.enterprise-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* Typewriter specifically avoiding bumping by using grid overlay */
+.typewriter-wrapper {
+  display: inline-grid;
+  grid-template-areas: "text";
+  align-items: center;
+}
+
+.typewriter-placeholder {
+  grid-area: text;
+  visibility: hidden;
+  user-select: none;
+}
+
+.typewriter-animated {
+  grid-area: text;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--color-blood);
+  width: 100%;
+  animation: typing 3s cubic-bezier(0.1, 0.7, 0.1, 1), blink-caret .85s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--color-blood); }
+}
+
+/* Wood & Thorn utilities */
+.pattern-bg {
+  background-image: url('/assets/wood-texture.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.pattern-bg::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 30, 22, 0.85); /* Dark wood overlay for contrast */
+  z-index: 0;
+}
+
+.pattern-content {
+  position: relative;
+  z-index: 1;
+}
+
+.wood-border {
+  border: 4px solid var(--color-brown);
+  background-color: var(--color-creme);
+  border-radius: 8px; /* Slightly softened for enterprise feel */
+  position: relative;
+  box-shadow: 0 4px 20px rgba(44, 30, 22, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wood-border:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(44, 30, 22, 0.15);
+}
+
+/* Delicate thorn accent */
+.thorn-accent::after {
+  content: "✦"; /* Abstract thorn/cross sparkle */
+  position: absolute;
+  color: var(--color-blood);
+  font-size: 1.5rem;
+  top: -12px;
+  right: -12px;
+  text-shadow: 0 0 10px rgba(139, 26, 26, 0.4);
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.py-xl { padding-top: var(--spacing-xl); padding-bottom: var(--spacing-xl); }
+.py-xxl { padding-top: var(--spacing-xxl); padding-bottom: var(--spacing-xxl); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-blood);
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid var(--color-blood-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-blood-dark);
+  transform: translateY(-2px);
+}

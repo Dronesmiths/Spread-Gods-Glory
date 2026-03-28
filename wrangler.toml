@@ -1,0 +1,8 @@
+name = "spread-gods-glory"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-03-20"
+
+[vars]
+# Non-sensitive variables can be placed here.
+# Sensitive API keys (e.g. from .env.local) must be added via the Cloudflare Dashboard or Wrangler secrets.
+ENVIRONMENT = "production"

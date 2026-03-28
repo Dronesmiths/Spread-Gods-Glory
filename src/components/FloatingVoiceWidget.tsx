@@ -13,26 +13,32 @@ export default function FloatingVoiceWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const vapiInstance = new Vapi(VAPI_PUBLIC_KEY);
-    setVapi(vapiInstance);
+    try {
+      // Handle Vite ESM/CJS interop wrappers
+      const VapiClass = (Vapi as any).default || Vapi;
+      const vapiInstance = new VapiClass(VAPI_PUBLIC_KEY);
+      setVapi(vapiInstance);
 
-    vapiInstance.on('call-start', () => {
-      setCallStatus('active');
-      setIsOpen(true);
-    });
-    
-    vapiInstance.on('call-end', () => setCallStatus('inactive'));
-    vapiInstance.on('volume-level', (vol: number) => setVolumeLevel(vol));
-    
-    vapiInstance.on('error', (e: any) => {
-      console.error("Vapi WebRTC Error", e);
-      setCallStatus('inactive');
-    });
+      vapiInstance.on('call-start', () => {
+        setCallStatus('active');
+        setIsOpen(true);
+      });
+      
+      vapiInstance.on('call-end', () => setCallStatus('inactive'));
+      vapiInstance.on('volume-level', (vol: number) => setVolumeLevel(vol));
+      
+      vapiInstance.on('error', (e: any) => {
+        console.error("Vapi WebRTC Error", e);
+        setCallStatus('inactive');
+      });
 
-    return () => {
-      vapiInstance.stop();
-      vapiInstance.removeAllListeners();
-    };
+      return () => {
+        vapiInstance.stop();
+        vapiInstance.removeAllListeners();
+      };
+    } catch (err) {
+      console.error("Critical Vapi Mounting Error:", err);
+    }
   }, []);
 
   const toggleCall = async () => {
